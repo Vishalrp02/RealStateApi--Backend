@@ -1,0 +1,61 @@
+RealStateAPI
+A RESTful API for managing real estate properties. Built with Node.js and PostgreSQL, this backend
+allows users to register, login, manage properties, and upload images securely using JWT
+authentication.
+Features
+- User registration and login
+- JWT-based authentication
+- CRUD operations for properties
+- Image upload for properties
+- Profile management
+Tech Stack
+- Backend: Node.js, Express.js
+- Database: PostgreSQL
+- Authentication: JWT
+- Other: dotenv, bcrypt, pg, multer
+Getting Started
+Prerequisites
+- Node.js (v18+ recommended)
+- PostgreSQL (v15+ recommended)
+- npm or yarn
+Installation
+1. Clone the repository:
+ git clone <repository-url>
+ cd RealStateAPI
+2. Install dependencies:
+ npm install
+3. Create a .env file in the root directory:
+ PORT=5000
+ DATABASE_URL=postgresql://<user>:<password>@localhost:5432/RealStateAPI
+ JWT_SECRET=your_jwt_secret
+4. Set up PostgreSQL database:
+ CREATE DATABASE "RealStateAPI";
+ -- Run your schema SQL file to create tables
+5. Start the server:
+ npm start
+Server should now be running at http://localhost:5000.
+API Endpoints
+Auth
+- POST /users/register - Register a new user
+- POST /users/login - Login and get JWT token
+Properties
+- POST /users/me/addProperties - Add a new property (auth required)
+- GET /properties - Get all properties
+- GET /properties/:id - Get property by ID
+- PUT /properties/:id - Update property (auth required)
+- DELETE /properties/:id - Delete property (auth required)
+Profile
+- GET /users/me - Get current user profile (auth required)
+- PUT /users/me - Update profile (auth required)
+Usage
+1. Authenticate user to receive a JWT token.
+2. Include the token in the Authorization header for protected routes:
+ Authorization: Bearer <your_token>
+3. Use endpoints to manage users and properties.
+Dependencies
+- express
+- pg
+- bcrypt
+- jsonwebtoken
+- dotenv
+- multer
