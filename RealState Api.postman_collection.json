@@ -1,0 +1,295 @@
+{
+	"info": {
+		"_postman_id": "ded0639b-7433-474f-92d1-30783c86de53",
+		"name": "RealState Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47450059",
+		"_collection_link": "https://vishalrajpurohit02-5221668.postman.co/workspace/Vishal-Rajpurohit's-Workspace~f0b196c4-58d6-4c2e-8f0f-f0f4f2a4733d/collection/47450059-ded0639b-7433-474f-92d1-30783c86de53?action=share&source=collection_link&creator=47450059"
+	},
+	"item": [
+		{
+			"name": "Register a User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Vishal Rajpurohit\",\r\n\"email\":\"vishalrajpurohit@gmail.com\",\r\n\"password\":\"Navi2911\",\r\n\r\n\"role\":\"owner\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/user/register",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if(pm.response.code ===200){\r",
+							"    pm.environment.set('authToken',pm.response.json().token )\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"email\":\"vishalrajpurohit02@gmail.com\",\r\n\"password\":\"Navi2911\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/users/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzU5NjQ3MjkzLCJleHAiOjE3NjAyNTIwOTN9.nqQ7hUhZgoLjziX4jToMTB1gdVyRntN0HxAd5H2z1A4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"email\":\"vishalrajpurohit@gmail.com\",\r\n\"password\":\"Navi2911\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/api/users/me",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Property",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"title\":\"Farm House\",\r\n\"description\":\"Luxurey Farmhouse with all modern facilities\",\r\n\"location\":\"Rajpurohit farmhouse near hanumangarh bypass\",\r\n\"price\":200000,\r\n\"type\":\"villa\",\r\n\"bedrooms\":5\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/users/me/addproperties",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"me",
+						"addproperties"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Property",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/users/me/view/property",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"me",
+						"view",
+						"property"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Property by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/users/me/property/2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"me",
+						"property",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Property",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"title\":\"villa\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/users/me/property/3",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"me",
+						"property",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Property",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/users/me/property/3",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"me",
+						"property",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{authToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
